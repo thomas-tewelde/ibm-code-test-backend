@@ -1,4 +1,4 @@
-/** @module app/data/subject */
+/** @module app/models/subject */
 
 import * as Debug from 'debug';
 import {

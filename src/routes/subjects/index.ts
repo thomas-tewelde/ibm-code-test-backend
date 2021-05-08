@@ -19,10 +19,10 @@ router.get(
   '/',
   validateRouteInput('subjects/read-subjects'),
   wrapAsyncMiddleware(async function(req, res) {
-    const users = await Subject.findAll({
+    const subjects = await Subject.findAll({
       transaction: req.$transaction,
     });
-    return await res.$json({ data: users });
+    return await res.$json({ data: subjects });
   }),
 );
 

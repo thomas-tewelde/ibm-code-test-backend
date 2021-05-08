@@ -4,9 +4,9 @@ import * as path from 'path';
 import { RequestHandler } from 'express';
 import { Validator } from 'express-json-validator-middleware';
 
-import { EUserRole } from '../data/user';
+import { EUserRole } from '../models/user';
 
-import { User } from '../data/user';
+import { User } from '../models/user';
 import { ForbiddenError, InputSchemaNotFoundError } from '../errors';
 
 const validator = new Validator({allErrors: true});

@@ -1,4 +1,4 @@
-/** @module app/data/subject-user */
+/** @module app/models/subject-user */
 
 import {
   Column,

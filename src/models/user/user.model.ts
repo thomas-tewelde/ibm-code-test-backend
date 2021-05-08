@@ -1,4 +1,4 @@
-/** @module app/data/user */
+/** @module app/models/user */
 
 import * as bcrypt from 'bcrypt';
 import * as Debug from 'debug';
