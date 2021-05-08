@@ -1,0 +1,11 @@
+# We are strict about what we add to our containers.
+# Any population that occurs here will affect our environment
+# in production.
+# Therefore, explicitly add what you want to be added
+# to the container image.
+*
+
+!dist/
+!schemas/
+!package.json
+!package-lock.json

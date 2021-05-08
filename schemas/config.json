@@ -1,0 +1,148 @@
+{
+  "type": "object",
+  "properties": {
+    "auth": {
+      "type": "object",
+      "properties": {
+        "jwt": {
+          "type": "object",
+          "properties": {
+            "algorithm": {
+              "type": "string"
+            },
+            "expiresIn": {
+              "type": "string"
+            },
+            "secret": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "algorithm",
+            "expiresIn",
+            "secret"
+          ]
+        },
+        "password": {
+          "type": "object",
+          "properties": {
+            "saltRounds": {
+              "type": "integer"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "saltRounds"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "jwt",
+        "password"
+      ]
+    },
+    "database": {
+      "type": "object",
+      "properties": {
+        "logging": {
+          "type": "boolean"
+        },
+        "postgres": {
+          "type": "object",
+          "properties": {
+            "host": {
+              "type": "string"
+            },
+            "port": {
+              "type": "integer"
+            },
+            "username": {
+              "type": "string"
+            },
+            "password": {
+              "type":"string"
+            },
+            "database": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "host",
+            "port",
+            "username",
+            "password",
+            "database"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "logging",
+        "postgres"
+      ]
+    },
+    "http": {
+      "type": "object",
+      "properties": {
+        "host": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer"
+        },
+        "cors": {
+          "type": "object",
+          "properties": {
+            "origins": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": ["origins"]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "host",
+        "port",
+        "cors"
+      ]
+    },
+    "modes": {
+      "type": "object",
+      "properties": {
+        "dev": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "dev"
+      ]
+    },
+    "routes": {
+      "type": "object",
+      "properties": {
+        "transactionPerRequest": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "transactionPerRequest"
+      ]
+    }
+  },
+  "required": [
+    "auth",
+    "database",
+    "http",
+    "modes",
+    "routes"
+  ]
+}

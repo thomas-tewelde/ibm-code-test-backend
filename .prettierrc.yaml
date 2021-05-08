@@ -1,0 +1,8 @@
+printWidth: 80
+tabWidth: 2
+useTabs: false # use whitespace
+trailingComma: "all"
+semi: true  # add semicolon at end of every statement
+singleQuote: true
+bracketSpacing: true
+endOfLine: lf

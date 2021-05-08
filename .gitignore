@@ -1,0 +1,13 @@
+# Installed packages.
+node_modules
+
+# Typescript compiler output.
+/dist
+
+# Environment-specific configurations.
+/src/config/*
+!/src/config/default.ts
+!/src/config/index.*
+
+# Env files
+*.env
