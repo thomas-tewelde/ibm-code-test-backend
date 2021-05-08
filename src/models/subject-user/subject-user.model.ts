@@ -4,6 +4,7 @@ import {
   Column,
   Table,
   ForeignKey,
+  DataType,
 } from 'sequelize-typescript';
 import { Model } from '../base/model';
 import { User } from '../user';
@@ -15,11 +16,17 @@ import Subject from '../subject/subject.model';
 
 export class UserSubject extends Model<UserSubject> {
     @ForeignKey(() => Subject)
-    @Column
+    @Column({
+      unique: false,
+      type: DataType.STRING(32)
+    })
     subjectId: string
 
     @ForeignKey(() => User)
-    @Column
+    @Column({
+      unique: false,
+      type: DataType.STRING(32)
+    })
     userId: string
 }
 
