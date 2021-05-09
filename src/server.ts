@@ -8,7 +8,7 @@ dotenv.config({ path: resolve(__dirname, '../.env') });
 import { setup as setupAuth } from './auth';
 import { createLogger, logger } from './clients';
 import { setup as setupConfig } from './config';
-import { setup as setupData } from './data';
+import { setup as setupData } from './models';
 import { getErrorJSON } from './errors';
 import { setup as setupRouter } from './routes';
 

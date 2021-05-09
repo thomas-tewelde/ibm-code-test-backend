@@ -10,10 +10,10 @@ ENV NODE_ENV ${NODE_ENV}
 CMD ["node", "server.js"]
 EXPOSE 3000
 
-RUN mkdir -p ${APP_DIR}/data/ && \
-    chown node:node ${APP_DIR}/data/
+RUN mkdir -p ${APP_DIR}/models/ && \
+    chown node:node ${APP_DIR}/models/
 WORKDIR ${APP_DIR}/dist/
-VOLUME ${APP_DIR}/data/
+VOLUME ${APP_DIR}/models/
 
 ADD package.json package-lock.json /tmp/_npm/
 RUN cd /tmp/_npm/ && \
