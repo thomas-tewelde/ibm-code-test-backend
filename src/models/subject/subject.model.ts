@@ -1,4 +1,4 @@
-/** @module app/data/subject */
+/** @module app/models/subject */
 
 import * as Debug from 'debug';
 import {
@@ -149,7 +149,8 @@ export class Subject extends Model<Subject> {
   isholiday: ISubject['isholiday'];
   
   @BelongsToMany(() => User, () => UserSubject)
-  users: User[]
+  users: Array<Subject & {UserSubject: UserSubject}>
+
 
 
   /** Get the JSON representation of the user. */

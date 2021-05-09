@@ -1,4 +1,4 @@
-/** @module app/data/base */
+/** @module app/models/base */
 
 import * as Debug from 'debug';
 import {
