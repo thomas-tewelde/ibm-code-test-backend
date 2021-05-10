@@ -1,6 +1,6 @@
 import * as express from 'express';
 
-import { EUserRole } from '../../models/user';
+import { EUserRole, User } from '../../models/user';
 
 import {
   routeWithUserRoles,
@@ -17,25 +17,37 @@ router.use(routeWithUserRoles([EUserRole.Staff, EUserRole.Admin]));
 
 router.get(
   '/',
-  validateRouteInput('subjects/read-subjects'),
   wrapAsyncMiddleware(async function(req, res) {
-    const users = await Subject.findAll({
+    const subject = await Subject.findAll({
       transaction: req.$transaction,
-    });
-    return await res.$json({ data: users });
+    })
+    return await res.$json({ data: subject });
   }),
 );
 
+router.get(
+  '/students',
+  wrapAsyncMiddleware(async function(req, res) {
+    const subjects = await Subject.findAll({
+      transaction: req.$transaction,
+      include: [{
+        model: User,
+      }],
+    });
+    return await res.$json({ data: subjects.map(s =>( { ...s.toJSON(), ...{user: s.users}})) });
+  }),
+);
 
+router.use(routeWithUserRoles([EUserRole.Admin]));
 router.post(
   '/',
   validateRouteInput('subjects/create-subject'),
   wrapAsyncMiddleware(async function(req, res) {
-    const user = await Subject.create(req.body, {
+    const subject = await Subject.create(req.body, {
       transaction: req.$transaction,
     });
 
-    return await res.status(201).$json({ data: user });
+    return await res.status(201).$json({ data: subject });
   }),
 );
 
@@ -44,16 +56,16 @@ router.put(
   '/:subjectId',
   validateRouteInput('subjects/update-subject'),
   wrapAsyncMiddleware(async function(req, res) {
-    const user = await Subject.findByPk(req.params.userId, {
+    const subject = await Subject.findByPk(req.params.subjectId, {
       transaction: req.$transaction,
     });
-    if (!user) {
+    if (!subject) {
       throw new EntityNotFoundError('subject not found');
     }
-    await user.update(req.body, {
+    await subject.update(req.body, {
       transaction: req.$transaction,
     });
-    return await res.$json({ data: user });
+    return await res.$json({ data: subject });
   }),
 );
 
@@ -62,16 +74,16 @@ router.delete(
   '/:subjectId',
   validateRouteInput('subjects/delete-subject'),
   wrapAsyncMiddleware(async function(req, res) {
-    const user = await Subject.findByPk(req.params.userId, {
+    const subject = await Subject.findByPk(req.params.subjectId, {
       transaction: req.$transaction,
     });
-    if (!user) {
+    if (!subject) {
       throw new EntityNotFoundError('subject not found');
     }
-    await user.destroy({
+    await subject.destroy({
       transaction: req.$transaction,
     });
-    return await res.$json({ data: user });
+    return await res.$json({ data: subject });
   }),
 );
 

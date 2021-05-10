@@ -1,4 +1,4 @@
-/** @module app/data/user */
+/** @module app/models/user */
 
 import * as bcrypt from 'bcrypt';
 import * as Debug from 'debug';
@@ -56,8 +56,8 @@ export class User extends Model<User> {
   email: IUser['email'];
 
 
-  @BelongsToMany(() => User, () => UserSubject)
-  subjects: Subject[]
+  @BelongsToMany(() => Subject, () => UserSubject)
+  subjects: Array<Subject & {UserSubject: UserSubject}>
 
   /**
    * Property populated ONLY when a (current or old) password
