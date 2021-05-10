@@ -12,7 +12,7 @@
   "main": "dist/server",
   "scripts": {
     "build": "npm run build:src",
-    "build:src": "tsc --project src --watch",
+    "build:src": "tsc --project src",
     "clean:dist": "rimraf dist",
     "image": "docker build --tag ${npm_package_config_com}/${npm_package_config_app}:${npm_package_version} --build-arg=COM=${npm_package_config_com} --build-arg=APP=${npm_package_config_app} .",
     "script:add-user": "cd dist && node scripts/add-user",
