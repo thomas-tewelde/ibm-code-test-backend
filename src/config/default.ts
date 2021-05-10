@@ -26,18 +26,18 @@ config.auth = {
 config.database = {
   logging: !env.NO_DB_LOGGING && !!env.DEBUG,
   postgres: {
-    host: env.POSTGRES_HOST || env.PGHOST || '127.0.0.1',
-    port: parseInt(env.POSTGRES_PORT || env.PGPORT, 10) || 5432,
-    username: env.POSTGRES_USERNAME || env.PGUSER || 'postgres',
-    password: env.POSTGRES_PASSWORD || env.PGPASSWORD || 'postgres',
-    database: env.POSTGRES_DB || env.PGDATABASE || 'develop',
+    host: process.env.RDS_HOSTNAME|| env.POSTGRES_HOST || env.PGHOST || '127.0.0.1',
+    port: parseInt(process.env.RDS_PORT || env.POSTGRES_PORT || env.PGPORT, 10) || 5432,
+    username: process.env.RDS_USERNAME || env.POSTGRES_USERNAME || env.PGUSER || 'postgres',
+    password: process.env.RDS_PASSWORD || env.POSTGRES_PASSWORD || env.PGPASSWORD || 'postgres',
+    database: process.env.RDS_DB_NAME || env.POSTGRES_DB || env.PGDATABASE || 'develop',
   },
 };
 
 // HTTP server
 config.http = {
-  host: env.HTTP_HOST || '127.0.0.1',
-  port: parseInt(env.HTTP_PORT, 10) || 3000,
+  host: process.env.HTTP_HOST || env.HTTP_HOST || '127.0.0.1',
+  port: parseInt(process.env.PORT || env.HTTP_PORT, 10) || 3000,
   cors: {
     origins: env.HTTP_CORS_ORIGINS
       ? env.HTTP_CORS_ORIGINS.split(',')
